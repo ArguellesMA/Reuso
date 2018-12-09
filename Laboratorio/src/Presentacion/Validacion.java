@@ -5,18 +5,25 @@
  */
 package Presentacion;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import libreria.Conexion;
 
 /**
  *
  * @author Marco
  */
 public class Validacion extends javax.swing.JFrame {
-
+Statement sentencia;
+ libreria.Conexion myconexion = new libreria.Conexion();
     /**
      * Creates new form Validacion
      */
@@ -25,6 +32,7 @@ public class Validacion extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
         setTitle("Analisis");
+        txtusuario.requestFocus();
         setIconImage(new ImageIcon (getClass().getResource("/image/iconovalidacion.jpg")).getImage());
         
         ((JPanel)getContentPane()).setOpaque(false);
@@ -34,6 +42,7 @@ public class Validacion extends javax.swing.JFrame {
         getLayeredPane().add(fondo, JLayeredPane.FRAME_CONTENT_LAYER);
         fondo.setBounds(0,0, 400, 270);
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -44,37 +53,34 @@ public class Validacion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextPane1 = new javax.swing.JTextPane();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtcontraseña = new javax.swing.JPasswordField();
-        btnValidacion = new javax.swing.JButton();
-        txtnombre = new javax.swing.JTextField();
-        regresar = new javax.swing.JButton();
+        txtusuario = new javax.swing.JTextField();
+        txtingresar = new javax.swing.JButton();
+
+        jScrollPane1.setViewportView(jTextPane1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel2.setText("Nombre");
+        jLabel2.setText("Usuario");
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel3.setText("Contraseña:");
 
-        btnValidacion.setText("Validar");
-        btnValidacion.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnValidacionMouseClicked(evt);
-            }
-        });
-        btnValidacion.addActionListener(new java.awt.event.ActionListener() {
+        txtcontraseña.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnValidacionActionPerformed(evt);
+                txtcontraseñaActionPerformed(evt);
             }
         });
 
-        regresar.setText("Regresar");
-        regresar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                regresarMouseClicked(evt);
+        txtingresar.setText("Ingresar");
+        txtingresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtingresarActionPerformed(evt);
             }
         });
 
@@ -85,20 +91,15 @@ public class Validacion extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(33, 33, 33)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtcontraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(regresar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
-                        .addComponent(btnValidacion)
-                        .addGap(75, 75, 75))))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(txtcontraseña, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+                        .addComponent(txtusuario))
+                    .addComponent(txtingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(108, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,51 +107,47 @@ public class Validacion extends javax.swing.JFrame {
                 .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtusuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtcontraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(regresar)
-                    .addComponent(btnValidacion))
+                .addGap(18, 18, 18)
+                .addComponent(txtingresar, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnValidacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidacionActionPerformed
+    private void txtcontraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcontraseñaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnValidacionActionPerformed
+    }//GEN-LAST:event_txtcontraseñaActionPerformed
 
-    private void btnValidacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnValidacionMouseClicked
-        // TODO add your handling code here:
-        
-        String Usuario="marco";
-        String Contraseña="mar97";
-        
-        String pass=new String(txtcontraseña.getPassword());
-        
-        if(txtnombre.getText().equals(Usuario) &&  pass.equals(Contraseña)){
-            
-            Menu emp = new Menu();
-            emp.setVisible(true);
-            dispose();
-	  	
-	  }else{
-	  	JOptionPane.showMessageDialog(this, "nombre o contraseña incorrectos");
-	  }
-        
-    }//GEN-LAST:event_btnValidacionMouseClicked
-
-    private void regresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_regresarMouseClicked
-        // TODO add your handling code here:
-        Menu menu = new Menu();
-        menu.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_regresarMouseClicked
+    private void txtingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtingresarActionPerformed
+     try{
+            myconexion.Conecta();
+            sentencia = myconexion.con.createStatement();
+            String usu = this.txtusuario.getText();
+            String cla = this.txtcontraseña.getText();
+          
+            ResultSet rs = sentencia.executeQuery("select nombre,contrasena from empleados where nombre='" + usu + "' and contrasena='" + cla + "'");
+            if (rs.next()){
+                JOptionPane.showMessageDialog(null, "Bienvenido al sistema " + txtusuario.getText());
+                Menu menu = new Menu();
+                menu.setVisible(true);
+                this.dispose();
+            }else{
+               JOptionPane.showMessageDialog(null, "Usuario no Autorizado", "Error de Acceso",JOptionPane.ERROR_MESSAGE);
+                this.txtusuario.grabFocus();
+            }
+            rs.close();
+            myconexion.con.close();
+          
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
+}
+    }//GEN-LAST:event_txtingresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,11 +185,12 @@ public class Validacion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnValidacion;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JButton regresar;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextPane jTextPane1;
     private javax.swing.JPasswordField txtcontraseña;
-    private javax.swing.JTextField txtnombre;
+    private javax.swing.JButton txtingresar;
+    private javax.swing.JTextField txtusuario;
     // End of variables declaration//GEN-END:variables
 }

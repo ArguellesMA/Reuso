@@ -22,7 +22,7 @@ import javax.swing.table.TableModel;
 public class Empleados {
  
    private String id_empleado;
-   private String nombre, apellido_paterno, apellido_materno, calle, avenida, intext, nivel_academico, correo, sexo; 
+   private String nombre, apellido_paterno, apellido_materno, calle, avenida, intext, nivel_academico, correo, contrasena; 
    private int edad,ncasa, celular;
    
    Statement sentencia;
@@ -103,14 +103,6 @@ public class Empleados {
         this.correo = correo;
     }
 
-    public String getSexo() {
-        return sexo;
-    }
-
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
-    }
-
     public int getEdad() {
         return edad;
     }
@@ -133,6 +125,14 @@ public class Empleados {
 
     public void setCelular(int celular) {
         this.celular = celular;
+    }
+    
+      public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 } 
   

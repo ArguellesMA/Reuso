@@ -10,6 +10,8 @@ package Presentacion;
 */
 import Laboratorio.Lista_Analisis;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.*;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -83,6 +85,11 @@ public class NuevoListaAnalisis extends javax.swing.JFrame {
         txtprecio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtprecioActionPerformed(evt);
+            }
+        });
+        txtprecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtprecioKeyTyped(evt);
             }
         });
 
@@ -221,6 +228,36 @@ public class NuevoListaAnalisis extends javax.swing.JFrame {
     private void txtnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtnombreActionPerformed
+
+    private void txtprecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtprecioKeyTyped
+        // TODO add your handling code here:
+         char c = evt.getKeyChar();
+        
+        if(Character.isLetter(c)){
+        getToolkit().beep();
+        
+        evt.consume();
+        
+        JOptionPane.showMessageDialog(null, "escriba solo numeros");
+        }
+        
+        txtprecio.addKeyListener(new KeyListener(){
+
+        public void keyTyped(KeyEvent e)
+
+        {      int limite = 4;
+        if (txtprecio.getText().length()== limite)
+
+        e.consume();
+        }
+
+        public void keyPressed(KeyEvent arg0) {
+        }
+
+        public void keyReleased(KeyEvent arg0) {
+        }
+        });
+    }//GEN-LAST:event_txtprecioKeyTyped
 
     /**
      * @param args the command line arguments

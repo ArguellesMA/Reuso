@@ -59,6 +59,8 @@ public class Reglas {
     
     public void descuento(JTextField txtprecio, JTextField txtdescuento, JTextField txtsubtotal) {
         
+        System.out.print("holaaa");
+        
         double precio=Double.parseDouble(txtprecio.getText());
         double descuento=Double.parseDouble(txtdescuento.getText());
         

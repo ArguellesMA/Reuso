@@ -154,7 +154,7 @@ public  boolean Consulta(int id) throws SQLException
       
    
 /*☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼---EMPLEADOS---☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼*/
-    public boolean Insertar(JTextField txtapellidop, JTextField txtapellidom, JComboBox cbxsexo, JTextField txtcorreo, JTextField txtncasa, JComboBox cbxnacademico, JComboBox cbxintext, JTextField txtedad, JTextField txtcelular, JTextField txtcalle, JTextField txtavenida,JTextField txtidempleado, JTextField txtnombre)throws SQLException{
+    public boolean Insertar(JTextField txtapellidop, JTextField txtapellidom, JTextField txtidempleado, JTextField txtnombre, JTextField txtavenida, JTextField txtcalle, JTextField txtcelular, JTextField txtedad, JComboBox cbxintext, JTextField txtncasa, JComboBox cbxnacademico, JTextField txtcorreo, JTextField txtcontraseña)throws SQLException{
      Laboratorio.Empleados ave=new Laboratorio.Empleados();
         
         ave.setApellido_paterno(txtapellidop.getText());
@@ -169,7 +169,7 @@ public  boolean Consulta(int id) throws SQLException
         ave.setNcasa(Integer.parseInt(txtncasa.getText()));
         ave.setNivel_academico((String) cbxnacademico.getSelectedItem());
         ave.setCorreo(txtcorreo.getText());
-        ave.setSexo((String) cbxsexo.getSelectedItem());
+        ave.setContrasena(txtcontraseña.getText());
 
         myconexion.Conecta();
         sentencia = myconexion.con.createStatement();
@@ -178,8 +178,8 @@ public  boolean Consulta(int id) throws SQLException
         if (Consultar(ave.getId_empleado())==false)
         {
             //Insert into
-            System.out.println("El sexo es: "+ave.getSexo());
-            String insertar="insert into public.empleados(id_empleado, nombre, apellido_paterno, apellido_materno, sexo, edad, avenida, calle, ncasa, intext, nivel_academico, correo, celular) values('"+ave.getId_empleado()+"','"+ave.getNombre()+"','"+ave.getApellido_paterno()+"','"+ave.getApellido_materno()+"','"+ave.getSexo()+"',"+ave.getEdad()+",'"+ave.getAvenida()+"','"+ave.getCalle()+"',"+ave.getNcasa()+",'"+ave.getIntext()+"','"+ave.getNivel_academico()+"','"+ave.getCorreo()+"',"+ave.getCelular()+");";
+            System.out.println("La contraseña es : "+ave.getContrasena());
+            String insertar="insert into public.empleados(id_empleado, nombre, apellido_paterno, apellido_materno, edad, ave, calle, ncasa, intext, nivel_academico, correo, celular, contrasena) values('"+ave.getId_empleado()+"','"+ave.getNombre()+"','"+ave.getApellido_paterno()+"','"+ave.getApellido_materno()+"',"+ave.getEdad()+",'"+ave.getAvenida()+"','"+ave.getCalle()+"',"+ave.getNcasa()+",'"+ave.getIntext()+"','"+ave.getNivel_academico()+"','"+ave.getCorreo()+"',"+ave.getCelular()+", '"+ave.getContrasena()+"');";
             System.out.println(insertar);
             sentencia.execute(insertar);
             return true;

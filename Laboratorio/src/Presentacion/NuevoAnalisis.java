@@ -11,6 +11,8 @@ package Presentacion;
 
 import Laboratorio.Analisis;
 import static Presentacion.NHorasEntrada.fechaActual;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.*;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -52,6 +54,11 @@ Thread hilo;
         hilo=new Thread(this);
         hilo.start();
         setVisible(true);
+        
+        txtsubtotal.setEnabled(false);
+        txttotal.setEnabled(false);
+        
+        
     }
     
      public void hora(){
@@ -174,11 +181,29 @@ Thread hilo;
         Precio.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         Precio.setText("Precio               $");
 
+        txtprecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtprecioKeyTyped(evt);
+            }
+        });
+
         SubTotal.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         SubTotal.setText("SubTotal          $");
 
+        txtsubtotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtsubtotalActionPerformed(evt);
+            }
+        });
+
         SaldoAbonado.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         SaldoAbonado.setText("Anticipo           $");
+
+        txtanticipo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtanticipoKeyTyped(evt);
+            }
+        });
 
         txtcalcular.setText("Calcular");
         txtcalcular.addActionListener(new java.awt.event.ActionListener() {
@@ -189,6 +214,12 @@ Thread hilo;
 
         Total.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         Total.setText("Total                $");
+
+        txttotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txttotalActionPerformed(evt);
+            }
+        });
 
         btncalcular.setText("Calcular");
         btncalcular.addActionListener(new java.awt.event.ActionListener() {
@@ -235,8 +266,7 @@ Thread hilo;
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(Analisis)
                                 .addGap(29, 29, 29)
-                                .addComponent(cbxanalisis, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(cbxanalisis, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(Regresar)
@@ -324,7 +354,6 @@ Thread hilo;
                     .addComponent(cbxanalisis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Precio)
                     .addComponent(txtprecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 26, Short.MAX_VALUE)
@@ -420,6 +449,9 @@ Thread hilo;
         // TODO add your handling code here:
         Negocios.Reglas tres = new Negocios.Reglas();
            tres.total(txtsubtotal, txtanticipo, txttotal);
+           
+                   txttotal.setEnabled(true);
+        
         
     }//GEN-LAST:event_txtcalcularActionPerformed
 
@@ -438,12 +470,84 @@ Thread hilo;
         
            Negocios.Reglas dos = new Negocios.Reglas();
            dos.descuento(txtprecio, txtdescuento, txtsubtotal);
+           
+           txtsubtotal.setEnabled(true);
+        
     }//GEN-LAST:event_btncalcularActionPerformed
 
     private void txtdescuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdescuentoActionPerformed
         // TODO add your handling code here:
         txtdescuento.setEnabled(false);
     }//GEN-LAST:event_txtdescuentoActionPerformed
+
+    private void txtprecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtprecioKeyTyped
+        // TODO add your handling code here:
+         char c = evt.getKeyChar();
+        
+        if(Character.isLetter(c)){
+        getToolkit().beep();
+        
+        evt.consume();
+        
+        JOptionPane.showMessageDialog(null, "escriba solo numeros");
+        }
+        
+        txtprecio.addKeyListener(new KeyListener(){
+
+        public void keyTyped(KeyEvent e)
+
+        {      int limite = 4;
+        if (txtprecio.getText().length()== limite)
+
+        e.consume();
+        }
+
+        public void keyPressed(KeyEvent arg0) {
+        }
+
+        public void keyReleased(KeyEvent arg0) {
+        }
+        });
+    }//GEN-LAST:event_txtprecioKeyTyped
+
+    private void txtanticipoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtanticipoKeyTyped
+        // TODO add your handling code here:
+         char c = evt.getKeyChar();
+        
+        if(Character.isLetter(c)){
+        getToolkit().beep();
+        
+        evt.consume();
+        
+        JOptionPane.showMessageDialog(null, "escriba solo numeros");
+        }
+        
+        txtanticipo.addKeyListener(new KeyListener(){
+
+        public void keyTyped(KeyEvent e)
+
+        {      int limite = 4;
+        if (txtanticipo.getText().length()== limite)
+
+        e.consume();
+        }
+
+        public void keyPressed(KeyEvent arg0) {
+        }
+
+        public void keyReleased(KeyEvent arg0) {
+        }
+        });
+    }//GEN-LAST:event_txtanticipoKeyTyped
+
+    private void txtsubtotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtsubtotalActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txtsubtotalActionPerformed
+
+    private void txttotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttotalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txttotalActionPerformed
     
     
      public static String fechaActual(){

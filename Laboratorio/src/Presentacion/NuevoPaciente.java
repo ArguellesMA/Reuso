@@ -7,6 +7,8 @@ package Presentacion;
 
 import Laboratorio.Pacientes;
 import static Presentacion.NHorasEntrada.fechaActual;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -114,6 +116,18 @@ public class NuevoPaciente extends javax.swing.JFrame {
 
         jLabel7.setText("Celular");
 
+        txttelcasa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txttelcasaKeyTyped(evt);
+            }
+        });
+
+        txtcelular.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtcelularKeyTyped(evt);
+            }
+        });
+
         jLabel8.setText("Edad");
 
         jLabel9.setText("Sexo");
@@ -139,6 +153,12 @@ public class NuevoPaciente extends javax.swing.JFrame {
         jLabel13.setText("Calle");
 
         jLabel15.setText("No. Casa");
+
+        txtnocasa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtnocasaKeyTyped(evt);
+            }
+        });
 
         jLabel16.setText("Int/Ext");
 
@@ -413,6 +433,96 @@ this.dispose();// TODO add your handling code here:
         JOptionPane.showMessageDialog(null, "escriba solo numeros");
         }
     }//GEN-LAST:event_txtedadKeyTyped
+
+    private void txttelcasaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txttelcasaKeyTyped
+        // TODO add your handling code here:
+         char c = evt.getKeyChar();
+        
+        if(Character.isLetter(c)){
+        getToolkit().beep();
+        
+        evt.consume();
+        
+        JOptionPane.showMessageDialog(null, "escriba solo numeros");
+        }
+        
+        txttelcasa.addKeyListener(new KeyListener(){
+
+        public void keyTyped(KeyEvent e)
+
+        {      int limite = 4;
+        if (txttelcasa.getText().length()== limite)
+
+        e.consume();
+        }
+
+        public void keyPressed(KeyEvent arg0) {
+        }
+
+        public void keyReleased(KeyEvent arg0) {
+        }
+        });
+    }//GEN-LAST:event_txttelcasaKeyTyped
+
+    private void txtcelularKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcelularKeyTyped
+        // TODO add your handling code here:
+         char c = evt.getKeyChar();
+        
+        if(Character.isLetter(c)){
+        getToolkit().beep();
+        
+        evt.consume();
+        
+        JOptionPane.showMessageDialog(null, "escriba solo numeros");
+        }
+        
+        txtcelular.addKeyListener(new KeyListener(){
+
+        public void keyTyped(KeyEvent e)
+
+        {      int limite = 10;
+        if (txtcelular.getText().length()== limite)
+
+        e.consume();
+        }
+
+        public void keyPressed(KeyEvent arg0) {
+        }
+
+        public void keyReleased(KeyEvent arg0) {
+        }
+        });
+    }//GEN-LAST:event_txtcelularKeyTyped
+
+    private void txtnocasaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnocasaKeyTyped
+        // TODO add your handling code here:
+         char c = evt.getKeyChar();
+        
+        if(Character.isLetter(c)){
+        getToolkit().beep();
+        
+        evt.consume();
+        
+        JOptionPane.showMessageDialog(null, "escriba solo numeros");
+        }
+        
+        txtnocasa.addKeyListener(new KeyListener(){
+
+        public void keyTyped(KeyEvent e)
+
+        {      int limite = 4;
+        if (txtnocasa.getText().length()== limite)
+
+        e.consume();
+        }
+
+        public void keyPressed(KeyEvent arg0) {
+        }
+
+        public void keyReleased(KeyEvent arg0) {
+        }
+        });
+    }//GEN-LAST:event_txtnocasaKeyTyped
 
     /**
      * @param args the command line arguments

@@ -5,44 +5,17 @@
  */
 package Presentacion;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import javax.swing.DefaultListModel;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-
 /**
  *
  * @author Marco
  */
 public class Pendientes extends javax.swing.JFrame {
-        DefaultListModel modelo=new DefaultListModel();
-   PreparedStatement ps;
-   Statement sentencia;
-   ResultSet resultado;
-   
+
     /**
      * Creates new form Pendientes
      */
     public Pendientes() {
         initComponents();
-        setLocationRelativeTo(null);
-        setResizable(false);
-        setTitle("Paciente");
-        
-        ((JPanel)getContentPane()).setOpaque(false);
-        ImageIcon uno=new ImageIcon(this.getClass().getResource("/image/Pendientes.png"));
-        JLabel fondo = new JLabel();
-        fondo.setIcon(uno);
-        getLayeredPane().add(fondo, JLayeredPane.FRAME_CONTENT_LAYER);
-        fondo.setBounds(0,0, 900, 285);
     }
 
     /**
@@ -54,88 +27,26 @@ public class Pendientes extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        txtpaciente = new javax.swing.JTextField();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jlpendientes = new javax.swing.JList<>();
+        component1 = new libreria.component();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel1.setText("Nombre del paciente");
-
-        txtpaciente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtpacienteActionPerformed(evt);
-            }
-        });
-        txtpaciente.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtpacienteKeyReleased(evt);
-            }
-        });
-
-        jScrollPane2.setViewportView(jlpendientes);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtpaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(35, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(component1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtpaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(55, Short.MAX_VALUE))
+            .addComponent(component1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtpacienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpacienteKeyReleased
-        
-        
-        Connection cn;
-        if(this.txtpaciente.getText().isEmpty()){
-            modelo.clear();
-        }else{
-            try {
-                String [] titulos={"nombre paciente", "nombre analisis", "precio", "anticipo", "total"};
-                Class.forName("org.postgresql.Driver");
-                cn=DriverManager.getConnection("jdbc:postgresql://localhost/Laboratorio","postgres","Marco2805");
-                String cad=this.txtpaciente.getText();
-                PreparedStatement ps=cn.prepareStatement("SELECT nom_paciente||'  '||nom_analisis||'  $'||precio||'  $'||anticipo||'  $'||total FROM analisis where nom_paciente like '"+cad+"%'");
-                System.out.println(ps);
-                ResultSet rs=ps.executeQuery();
-                while(rs.next()){
-                    modelo.addElement(rs.getObject(1));
-                }
-                this.jlpendientes.setModel(modelo);
-            } catch (ClassNotFoundException | SQLException e) {
-                JOptionPane.showMessageDialog(rootPane,e.getMessage());
-            }
-        }
-    }//GEN-LAST:event_txtpacienteKeyReleased
-
-    private void txtpacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpacienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtpacienteActionPerformed
-
-      Negocios.Operaciones bus= new Negocios.Operaciones();
     /**
      * @param args the command line arguments
      */
@@ -172,9 +83,6 @@ public class Pendientes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JList<String> jlpendientes;
-    private javax.swing.JTextField txtpaciente;
+    private libreria.component component1;
     // End of variables declaration//GEN-END:variables
 }

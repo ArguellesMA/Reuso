@@ -54,10 +54,8 @@ public class NuevoEmpleado extends javax.swing.JFrame {
         txtapellidop = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtedad = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtcelular = new javax.swing.JTextField();
-        cbxsexo = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         txtcorreo = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -78,6 +76,8 @@ public class NuevoEmpleado extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txtapellidom = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        txtcontraseña = new javax.swing.JPasswordField();
 
         jTextField3.setText("jTextField3");
 
@@ -115,13 +115,14 @@ public class NuevoEmpleado extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel4.setText("Sexo");
-
         jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel6.setText("Celular");
 
-        cbxsexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hombre", "Mujer", "Indefinido", " " }));
+        txtcelular.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtcelularKeyTyped(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel7.setText("Correo");
@@ -145,6 +146,11 @@ public class NuevoEmpleado extends javax.swing.JFrame {
         txtncasa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtncasaActionPerformed(evt);
+            }
+        });
+        txtncasa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtncasaKeyTyped(evt);
             }
         });
 
@@ -219,6 +225,15 @@ public class NuevoEmpleado extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel4.setText("Contraseña:");
+
+        txtcontraseña.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtcontraseñaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -237,18 +252,18 @@ public class NuevoEmpleado extends javax.swing.JFrame {
                                             .addComponent(jLabel1)
                                             .addComponent(jLabel8)
                                             .addComponent(jLabel16)
-                                            .addComponent(jLabel5)))
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4))
-                                .addGap(31, 31, 31)
+                                            .addComponent(jLabel5)
+                                            .addComponent(jLabel4)))
+                                    .addComponent(jLabel3))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtnombre, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
                                     .addComponent(txtidempleado, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtapellidop, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
-                                    .addComponent(cbxnacademico, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cbxsexo, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtedad, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtapellidom)))
+                                    .addComponent(txtapellidom)
+                                    .addComponent(cbxnacademico, 0, 249, Short.MAX_VALUE)
+                                    .addComponent(txtcontraseña, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -257,9 +272,10 @@ public class NuevoEmpleado extends javax.swing.JFrame {
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(jLabel7)
                                         .addGap(92, 92, 92)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtcorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtcelular, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(29, 29, 29)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtcelular, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtcorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(70, 70, 70)
                         .addComponent(jButton1)
@@ -268,7 +284,7 @@ public class NuevoEmpleado extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -284,8 +300,8 @@ public class NuevoEmpleado extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(txtapellidop, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(txtapellidop, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtapellidom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -293,27 +309,23 @@ public class NuevoEmpleado extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(cbxnacademico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(cbxsexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtedad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtcontraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtedad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(txtcelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jLabel7))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(txtcorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(txtcorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -355,7 +367,7 @@ public class NuevoEmpleado extends javax.swing.JFrame {
         Negocios.Operaciones ne=new Negocios.Operaciones();
         
         try{
-        if (ne.Insertar(txtapellidop, txtapellidom, cbxsexo, txtcorreo, txtncasa, cbxnacademico, cbxintext, txtedad, txtcelular, txtcalle, txtavenida, txtidempleado, txtnombre) ==true)
+        if (ne.Insertar(txtapellidop, txtapellidom, txtidempleado, txtnombre, txtavenida, txtcalle, txtcelular, txtedad, cbxintext, txtncasa, cbxnacademico, txtcorreo, txtcontraseña)==true)
             
             JOptionPane.showMessageDialog(null, "El registro del Empleado fue exitoso!");
         else 
@@ -383,7 +395,6 @@ public class NuevoEmpleado extends javax.swing.JFrame {
      txtncasa.setText("");
      cbxnacademico.setToolTipText("");
      txtcorreo.setText("");
-     cbxsexo.setToolTipText("");
      
      
         }
@@ -452,6 +463,70 @@ public class NuevoEmpleado extends javax.swing.JFrame {
       
     }//GEN-LAST:event_txtedadActionPerformed
 
+    private void txtcelularKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcelularKeyTyped
+        // TODO add your handling code here:
+         char c = evt.getKeyChar();
+        
+        if(Character.isLetter(c)){
+        getToolkit().beep();
+        
+        evt.consume();
+        
+        JOptionPane.showMessageDialog(null, "escriba solo numeros");
+        }
+        
+        txtcelular.addKeyListener(new KeyListener(){
+
+        public void keyTyped(KeyEvent e)
+
+        {      int limite = 10;
+        if (txtcelular.getText().length()== limite)
+
+        e.consume();
+        }
+
+        public void keyPressed(KeyEvent arg0) {
+        }
+
+        public void keyReleased(KeyEvent arg0) {
+        }
+        });
+    }//GEN-LAST:event_txtcelularKeyTyped
+
+    private void txtncasaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtncasaKeyTyped
+        // TODO add your handling code here:
+         char c = evt.getKeyChar();
+        
+        if(Character.isLetter(c)){
+        getToolkit().beep();
+        
+        evt.consume();
+        
+        JOptionPane.showMessageDialog(null, "escriba solo numeros");
+        }
+        
+        txtncasa.addKeyListener(new KeyListener(){
+
+        public void keyTyped(KeyEvent e)
+
+        {      int limite = 4;
+        if (txtncasa.getText().length()== limite)
+
+        e.consume();
+        }
+
+        public void keyPressed(KeyEvent arg0) {
+        }
+
+        public void keyReleased(KeyEvent arg0) {
+        }
+        });
+    }//GEN-LAST:event_txtncasaKeyTyped
+
+    private void txtcontraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcontraseñaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtcontraseñaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -491,7 +566,6 @@ public class NuevoEmpleado extends javax.swing.JFrame {
     private javax.swing.JButton btnguardar;
     private javax.swing.JComboBox<String> cbxintext;
     private javax.swing.JComboBox<String> cbxnacademico;
-    private javax.swing.JComboBox<String> cbxsexo;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -514,6 +588,7 @@ public class NuevoEmpleado extends javax.swing.JFrame {
     private javax.swing.JTextField txtavenida;
     private javax.swing.JTextField txtcalle;
     private javax.swing.JTextField txtcelular;
+    private javax.swing.JPasswordField txtcontraseña;
     private javax.swing.JTextField txtcorreo;
     private javax.swing.JTextField txtedad;
     private javax.swing.JTextField txtidempleado;
